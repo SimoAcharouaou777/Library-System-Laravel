@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('publication_year');
             $table->Integer('total_copies');
             $table->integer('available_copies');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
