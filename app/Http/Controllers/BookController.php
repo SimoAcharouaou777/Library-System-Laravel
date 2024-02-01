@@ -31,4 +31,10 @@ class BookController extends Controller
         $newbook = Book::create($data);
         return redirect(route('show.book'));
     }
+
+    public function delete($id)
+    {
+        Book::find($id)->delete();
+        return redirect()->route('show.book');
+    }
 }

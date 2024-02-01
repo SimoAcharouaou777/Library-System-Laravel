@@ -115,7 +115,7 @@ input:focus {
     <aside class="left shadow " id="myAside">
         <div class="d-flex  gap-2 mb-5">
            
-            <h3 class="link">  YOUBOOK</h3>
+            <h3 class="link">  BOOK</h3>
         </div>
      
       <a href="" class="d-flex gap-3 align-items-center">
