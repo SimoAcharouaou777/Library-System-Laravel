@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 class BookController extends Controller
 {
-    
+    public function index(){
+        $books=Book::all();
+        return view('home', compact('books'));
+    }
     public function show(){
         $books = Book::all();
         return view('admin.book', ['books' => $books]);
@@ -54,5 +57,11 @@ class BookController extends Controller
       
         $book->update($data);
         return redirect()->route('show.book');
+    }
+
+
+    public function detail($id){
+        $book=Book::find($id);
+        return view('detail', compact('book'));
     }
 }

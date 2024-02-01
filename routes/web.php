@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
-use App\Models\Book;
+use App\Http\Controllers\ResirvationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,7 @@ use App\Models\Book;
 |
 */
 
-Route::get('/', function () {
-    $books = Book::all();
-    return view('home', ['books' => $books]);
-});
+Route::get('/',[BookController::class ,'index'])->name('bokk.home');
 
 Auth::routes();
 
@@ -28,4 +25,5 @@ Route::get('/showbook', [BookController::class , 'show'])->name('show.book');
 Route::post('/showbook', [BookController::class , 'store'])->name('book.store');
 Route::delete('/delete/{id}', [BookController::class , 'delete'])->name('delete.book');
 Route::put('/edite/{book}', [BookController::class , 'update'])->name('edite.book');
-
+route::get('/detail/{id}',[BookController::class , 'detail'] )->name('reserver.book');
+route::post('/reservation',[ResirvationController::class , 'reserver'] )->name('make.reservation.book');

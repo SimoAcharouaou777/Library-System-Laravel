@@ -2,12 +2,17 @@
 @section('content')
 <style>
     .custom-img-height {
-        max-height: 200px; /* You can adjust this value based on your design preferences */
-        width: auto; /* This ensures that the image width adjusts proportionally to the specified height */
+        max-height: 200px; 
+        width: auto; 
     }
 </style>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    @if ($books->isEmpty())
+    <p>empty</p>
+        
+    @endif
     @foreach($books as $book)
         <div class="col">
             <div class="card h-100">
@@ -21,7 +26,7 @@
                 <div class="card-footer">
                     <form action="" method="post">
                         @csrf
-                        <button type="submit" class="btn btn-primary">Make Reservation</button>
+                        <a href="{{route('reserver.book' , $book->id)}}"  class="btn btn-primary">Make Reservation</a>
                     </form>
                 </div>
             </div>
