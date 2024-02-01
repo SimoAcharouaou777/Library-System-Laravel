@@ -20,25 +20,52 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="addBookForm" action="" method="post">
+                      <div>
+                        @if($errors->any())
+                        <ul>
+                          @foreach($errors->all() as $error)
+                          <li>
+                            {{$error}}
+                          </li>
+                          @endforeach
+                        </ul>
+                        @endif
+                      </div>
+                        <form id="addBookForm" action="{{route('book.store')}}" method="post">
                         
                             @csrf
                         
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="genre" class="form-label">genre</label>
+                              <input type="text" class="form-control" id="genre" name="genre" required>
+                          </div>
+        
+                            <div class="mb-3">
+                                <label for="author" class="form-label">Author</label>
+                                <input type="text" class="form-control" id="author" name="author" required>
                             </div>
         
                             <div class="mb-3">
-                                <label for="auteur" class="form-label">Auteur</label>
-                                <input type="text" class="form-control" id="auteur" name="auteur" required>
+                                <label for="description" class="form-label">Description</label>
+                                <input type="text" class="form-control" id="description" name="description" required>
                             </div>
-        
                             <div class="mb-3">
-                                <label for="annee_publication" class="form-label">Annee de Publication</label>
-                                <input type="date" class="form-control" id="annee_publication" name="annee_publication" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                              <label for="publication_year" class="form-label">Publication Year</label>
+                              <input type="date" class="form-control" id="publication_year" name="publication_year" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="total_copies" class="form-label">Total Copies</label>
+                            <input type="number" class="form-control" id="total_copies" name="total_copies" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="available_copies" class="form-label">Available Copies</label>
+                          <input type="number" class="form-control" id="available_copies" name="available_copies" required>
+                      </div>
+                            <button type="submit" class="btn btn-primary" name="submit">ADD</button>
                         </form>
                     </div>
                   
@@ -57,10 +84,13 @@
             <thead class="bg-light">
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Auteur</th>
-            <th>annee_publication</th>
-            <th>Status</th>
+            <th>title</th>
+            <th>genre</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Publication Year</th>
+            <th>Total Copies</th>
+            <th>Available Copies</th>
             <th>Action</th>
             				
           </tr>
@@ -68,13 +98,16 @@
         <tbody id="category">
 
 
-          
+          @foreach($books as $book)
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$book->id}}</td>
+                <td>{{$book->title}}</td>
+                <td>{{$book->genre}}</td>
+                <td>{{$book->author}}</td>
+                <td>{{$book->description}}</td>
+                <td>{{$book->publication_year}}</td>
+                <td>{{$book->total_copies}}</td>
+                <td>{{$book->available_copies}}</td>
        
                 <td class="d-flex gap-2">
                 <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editModal" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/> </svg></button>
@@ -87,9 +120,10 @@
                 </form>
                 </td>
             </tr>
+            @endforeach
 
 
-               {{-- Add Modal  --}}
+               {{-- Edite Modal  --}}
                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -102,20 +136,32 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" value="" required>
+                                <label for="title" class="form-label">Tiltle</label>
+                                <input type="text" class="form-control" id="title" name="title" value="" required>
                             </div>
         
                             <div class="mb-3">
-                                <label for="auteur" class="form-label">Auteur</label>
-                                <input type="text" class="form-control" id="auteur" name="auteur"  value="" required>
+                                <label for="author" class="form-label">Author</label>
+                                <input type="text" class="form-control" id="author" name="author"  value="" required>
                             </div>
         
                             <div class="mb-3">
-                                <label for="annee_publication" class="form-label">Annee de Publication</label>
-                                <input type="date" class="form-control" id="annee_publication" value="" name="annee_publication" required>
+                                <label for="description" class="form-label">Description</label>
+                                <input type="text" class="form-control" id="description" value="" name="description" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                            <div class="mb-3">
+                              <label for="publication_year" class="form-label">Publication Year</label>
+                              <input type="date" class="form-control" id="publication_year" value="" name="publication_year" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="total_copies" class="form-label">Total Copies </label>
+                            <input type="number" class="form-control" id="total_copies" value="" name="total_copies" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="available_copies" class="form-label">Available Copies </label>
+                          <input type="number" class="form-control" id="available_copies" value="" name="available_copies" required>
+                      </div>
+                            <button type="submit" class="btn btn-primary">Edite</button>
                         </form>
                     </div>
                   
