@@ -125,7 +125,8 @@
 
 
                {{-- Edite Modal  --}}
-               <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               @foreach($books as $book)
+               <div class="modal fade" id="editModal{{$book->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -133,42 +134,47 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form  action="" method="post">
+                        <form  action="{{route('edite.book', $book->id)}}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="title" class="form-label">Tiltle</label>
-                                <input type="text" class="form-control" id="title" name="title" value="" required>
+                                <input type="text" class="form-control" id="title" name="title" value="{{$book->title}}" required>
                             </div>
-        
+
+                            <div class="mb-3">
+                              <label for="title" class="form-label">Genre</label>
+                              <input type="text" class="form-control" id="genre" name="genre" value="{{$book->genre}}" required>
+                            </div>
                             <div class="mb-3">
                                 <label for="author" class="form-label">Author</label>
-                                <input type="text" class="form-control" id="author" name="author"  value="" required>
+                                <input type="text" class="form-control" id="author" name="author"  value="{{$book->author}}" required>
                             </div>
         
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
-                                <input type="text" class="form-control" id="description" value="" name="description" required>
+                                <input type="text" class="form-control" id="description" value="{{$book->description}}" name="description" required>
                             </div>
                             <div class="mb-3">
                               <label for="publication_year" class="form-label">Publication Year</label>
-                              <input type="date" class="form-control" id="publication_year" value="" name="publication_year" required>
+                              <input type="date" class="form-control" id="publication_year" value="{{$book->publication_year}}" name="publication_year" required>
                           </div>
                           <div class="mb-3">
                             <label for="total_copies" class="form-label">Total Copies </label>
-                            <input type="number" class="form-control" id="total_copies" value="" name="total_copies" required>
+                            <input type="number" class="form-control" id="total_copies" value="{{$book->total_copies}}" name="total_copies" required>
                         </div>
                         <div class="mb-3">
                           <label for="available_copies" class="form-label">Available Copies </label>
-                          <input type="number" class="form-control" id="available_copies" value="" name="available_copies" required>
+                          <input type="number" class="form-control" id="available_copies" value="{{$book->available_copies}}" name="available_copies" required>
                       </div>
-                            <button type="submit" class="btn btn-primary">Edite</button>
+                            <button type="submit"  class="btn btn-primary">Edite</button>
                         </form>
                     </div>
                   
                   </div>
                 </div>
             </div>
+            @endforeach
 
            
               
@@ -227,22 +233,6 @@
   
  
 
-
-    //     function search() {
-               
-    //            let input = document.getElementById("searchInput").value;
-    //            let url = `?uri=category/search&search=${encodeURIComponent(input)}`;
-
-    //            let xml = new XMLHttpRequest();
-    //            xml.onreadystatechange = function () {
-    //                if (this.readyState == 4 && this.status == 200) {
-    //                    document.getElementById("category").innerHTML = xml.responseText;
-    //                }
-    //            };
-    //            xml.open("GET", url, true);
-    //            xml.send();
-         
-    //    }
 </script>
 </body>
 </html>

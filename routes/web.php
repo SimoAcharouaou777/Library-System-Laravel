@@ -27,3 +27,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/showbook', [BookController::class , 'show'])->name('show.book');
 Route::post('/showbook', [BookController::class , 'store'])->name('book.store');
 Route::delete('/delete/{id}', [BookController::class , 'delete'])->name('delete.book');
+Route::put('/edite/{book}', [BookController::class , 'update'])->name('edite.book');
