@@ -27,3 +27,4 @@ Route::delete('/delete/{id}', [BookController::class , 'delete'])->name('delete.
 Route::put('/edite/{book}', [BookController::class , 'update'])->name('edite.book');
 route::get('/detail/{id}',[BookController::class , 'detail'] )->name('reserver.book');
 route::post('/reservation',[ResirvationController::class , 'reserver'] )->name('make.reservation.book');
+route::get('/resirvationdash',[ResirvationController::class , 'dashboard'] )->name('show.resirvation');
