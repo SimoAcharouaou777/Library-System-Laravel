@@ -45,5 +45,17 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var reservationSuccess = @json(session('reservationSuccess'));
+
+        if (reservationSuccess) {
+            alert('Reservation successful!');
+        }
+        if (reservationError) {
+                alert('Reservation failed: ' + reservationError);
+            }
+    });
+</script>
 
 @endsection

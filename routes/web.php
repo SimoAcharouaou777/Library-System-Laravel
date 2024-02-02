@@ -16,11 +16,11 @@ use App\Http\Controllers\ResirvationController;
 |
 */
 
-Route::get('/',[BookController::class ,'index'])->name('bokk.home');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [BookController::class, 'index'])->name('book.home');
+Route::get('/', [BookController::class, 'index'])->name('book.home');
 Route::get('/showbook', [BookController::class , 'show'])->name('show.book');
 Route::post('/showbook', [BookController::class , 'store'])->name('book.store');
 Route::delete('/delete/{id}', [BookController::class , 'delete'])->name('delete.book');

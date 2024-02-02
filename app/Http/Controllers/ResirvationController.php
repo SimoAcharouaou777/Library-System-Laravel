@@ -37,10 +37,11 @@ class ResirvationController extends Controller
                
             ]);
             $book->decrement('total_copies');
+            session()->flash('reservationSuccess', 'Reservation successful!');
             return redirect("/detail/$request->book_id");
+           
         } else {
-            return ' already reserved ';
-        }
+            session()->flash('reservationError', 'Book is already reserved.');        }
 
         
     }
