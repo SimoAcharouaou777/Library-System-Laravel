@@ -35,10 +35,10 @@
             <div class=" border d-flex gap-4">
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="Livre 1">
                 <div class="col-md-8 mt-4">
-                    <h5 class="card-title">{{ $book->title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Author: {{ $book->author }}</h6>
-                    <p class="card-text">Genre: {{ $book->genre }}</p>
-                    <p class="card-text">Publication Year: {{ $book->publication_year }}</p>
+                    <h5 class="card-title">Title  :{{ $book->title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Author : {{ $book->author }}</h6>
+                    <p class="card-text">Genre : {{ $book->genre }}</p>
+                    <p class="card-text">Publication Year : {{ $book->publication_year }}</p>
                 </div>
             </div>
         </div>
