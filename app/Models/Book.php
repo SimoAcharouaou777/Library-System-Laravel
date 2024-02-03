@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\resirvation;
 
 class Book extends Model
 {
@@ -18,4 +19,8 @@ class Book extends Model
         'available_copies',
         'image'
     ];
+    public function resirvations()
+    {
+        return $this->hasMany(Resirvation::class);
+    }
 }

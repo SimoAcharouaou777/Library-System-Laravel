@@ -84,8 +84,8 @@
             <thead class="bg-light">
           <tr>
             <th>ID</th>
-            <th>BOOK ID </th>
-            <th>USER ID </th>
+            <th>BOOK TITLE </th>
+            <th>USER NAME </th>
             <th>DATE START</th>
             <th>DATE END</th>
             <th>Action</th>
@@ -98,8 +98,8 @@
           @foreach($resirvations as $resirvation)
             <tr>
                 <td>{{$resirvation->id}}</td>
-                <td>{{$resirvation->id_book}}</td>
-                <td>{{$resirvation->id_user}}</td>
+                <td>{{ $resirvation->book->title }}</td>
+                <td>{{ $resirvation->user->name }}</td>
                 <td>{{$resirvation->date_start}}</td>
                 <td>{{$resirvation->date_end}}</td>
 

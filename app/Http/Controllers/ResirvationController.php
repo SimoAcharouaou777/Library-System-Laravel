@@ -47,7 +47,7 @@ class ResirvationController extends Controller
     }
     public function dashboard()
     {
-        $resirvations = Resirvation::all();
+        $resirvations = Resirvation::with(['book', 'user'])->get();
         return view('admin.resirvation',['resirvations' => $resirvations]);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Model;
+use App\Models\resirvation;
 
 class User extends Authenticatable
 {
@@ -52,6 +53,11 @@ class User extends Authenticatable
 public function hasRole($role)
 {
     return $this->roles->contains('name', $role);
+}
+
+public function resirvations()
+{
+    return $this->hasMany(Resirvation::class);
 }
 
 }
