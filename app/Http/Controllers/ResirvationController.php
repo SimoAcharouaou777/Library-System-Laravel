@@ -20,7 +20,7 @@ class ResirvationController extends Controller
 
       $book = Book::find($request->book_id);
       if($book->total_copies<=0){
-        return "there in no enough copies to reserve for the current time ";
+        session()->flash('soldout','there in no enough copies to reserve for the current time');
       }
 
         $available = Resirvation::where('id_book', $request->book_id)

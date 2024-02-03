@@ -48,13 +48,17 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var reservationSuccess = @json(session('reservationSuccess'));
-
+        var reservationError = @json(session('reservationError'));
+        var soldout = @json(session('soldout'));
         if (reservationSuccess) {
             alert('Reservation successful!');
         }
         if (reservationError) {
                 alert('Reservation failed: ' + reservationError);
-            }
+        }
+        if(soldout){
+            alert('there in no enough copies to reserve for the current time')
+        }
     });
 </script>
 
