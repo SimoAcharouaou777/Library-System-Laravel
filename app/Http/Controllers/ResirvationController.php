@@ -51,3 +51,4 @@ class ResirvationController extends Controller
         return view('admin.resirvation',['resirvations' => $resirvations]);
     }
 }
+  
